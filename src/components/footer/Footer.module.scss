@@ -1,0 +1,11 @@
+@use "@/sass/helpers/variables" as v;
+@use "@/sass/helpers/mixins.scss" as m;
+
+.footer {
+  &__inner {
+    background-color: #4d3f75;
+    height: m.torem(100);
+    background-color: #4d3f75;
+    border-radius: 2rem 2rem 0 0;
+  }
+}

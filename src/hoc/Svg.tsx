@@ -5,7 +5,7 @@ interface SvgProps {
   className?: string;
 }
 
-const Svg: FC<SvgProps> = ({ ...props }) => {
+const SvgSprite: FC<SvgProps> = ({ ...props }) => {
   const { icon, className } = props;
 
   return (
@@ -14,4 +14,4 @@ const Svg: FC<SvgProps> = ({ ...props }) => {
     </svg>
   );
 };
-export default Svg;
+export default SvgSprite;

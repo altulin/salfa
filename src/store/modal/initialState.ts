@@ -16,6 +16,6 @@ interface IInitialState {
 }
 
 export const initialState: IInitialState = {
-  // modalState: null,
-  modalState: { auth: { step: 1 } },
+  modalState: null,
+  // modalState: { auth: { step: 1 } },
 };

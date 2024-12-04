@@ -50,7 +50,7 @@
 }
 
 @mixin font($name) {
-  font-family: $name, "Arial", sans-serif;
+  font-family: $name, sans-serif;
 }
 
 // Position mixin

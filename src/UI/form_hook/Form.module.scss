@@ -12,7 +12,7 @@ input[type="checkbox"] {
   --line: 0.03rem;
 
   --color-placeholder: #b3c8d1;
-  --color-label: black;
+  --color-label: #f3bc28;
   --color-input: black;
 
   --font-size-label: 1rem;
@@ -25,9 +25,7 @@ input[type="checkbox"] {
 
   --padding-input: 0.75rem 1rem;
 
-  & + .container {
-    margin-top: 0.75rem;
-  }
+  --background-input: #fff;
 
   &--radio {
     display: flex;
@@ -63,6 +61,7 @@ input[type="checkbox"] {
   color: var(--color-input);
   width: 100%;
   transition: 0.3s;
+  background-color: var(--background-input);
 
   &:hover {
     border-color: var(--border-color-hover);
@@ -240,6 +239,7 @@ input[type="checkbox"] {
   border-radius: var(--border-radius);
   padding: var(--padding-input);
   transition: 0.3s;
+  background-color: var(--background-input);
 
   &__placeholder {
     font-size: var(--font-size-input);

@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalSlice from "./modal/modalSlice";
+import cardSlice from "./card/cardSlice";
 
 import { api } from "./service/api";
 import { rtkQueryErrorLogger } from "./service/errorLogger";
@@ -7,6 +8,7 @@ import { rtkQueryErrorLogger } from "./service/errorLogger";
 const store = configureStore({
   reducer: {
     modal: modalSlice,
+    card: cardSlice,
     [api.reducerPath]: api.reducer,
   },
   devTools: process.env.NODE_ENV === "development",

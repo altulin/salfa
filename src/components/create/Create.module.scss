@@ -1,0 +1,47 @@
+@use "@/sass/helpers/variables" as v;
+@use "@/sass/helpers/mixins.scss" as m;
+
+.create {
+  background-color: #4d3f75;
+  padding: m.torem(100) 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__block {
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  &__control {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  &__button {
+    background-image: linear-gradient(180deg, #f1ca2d 0%, #f6a21e 100%);
+    border-radius: 3.12rem;
+    padding: 1.5rem 2.5rem;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    color: #000;
+    min-width: 10rem;
+    cursor: pointer;
+  }
+}

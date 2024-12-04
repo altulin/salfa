@@ -1,0 +1,28 @@
+@use "@/sass/helpers/variables" as v;
+@use "@/sass/helpers/mixins.scss" as m;
+
+.title {
+  padding-left: 2rem;
+  border-left: 0.3rem solid #f3bc28;
+  margin-bottom: 7rem;
+  display: flex;
+  justify-content: space-between;
+
+  @include m.mw(v.$ph) {
+    flex-direction: column;
+    padding-left: 0;
+    border-left: 0;
+    row-gap: 1rem;
+  }
+
+  &__label {
+    font-weight: 600;
+    font-size: 4rem;
+    color: #f3bc28;
+    text-transform: uppercase;
+
+    @include m.mw(v.$ph) {
+      font-size: 2rem;
+    }
+  }
+}

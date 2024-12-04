@@ -34,7 +34,7 @@ html {
 
 body {
   scroll-behavior: smooth;
-  @include m.font("ProximaNova");
+  @include m.font("Raleway");
   color: v.$text-dark;
   background-color: v.$bg;
   min-height: 100vh;
@@ -138,6 +138,8 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   background-clip: text;
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0px 40rem #ffff inset;
 }
 
 .container {

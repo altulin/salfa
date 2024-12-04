@@ -1,0 +1,247 @@
+@use "@/sass/helpers/variables" as v;
+@use "@/sass/helpers/mixins.scss" as m;
+
+.products {
+  background-color: #4d3f75;
+  padding: m.torem(100) 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+
+  @include m.mw(v.$tb) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @include m.mw(v.$ph) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  background-color: v.$white;
+  border: 3px solid #f3bc28;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: transparent;
+  }
+
+  &__link {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  &__image {
+    width: 100%;
+    height: 0;
+    position: relative;
+    padding-top: 60%;
+    overflow: hidden;
+    margin-top: 1rem;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 110%;
+    text-align: center;
+    color: #000;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    min-height: 2lh;
+  }
+}
+
+.btn {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  top: 1rem;
+  border-radius: 50%;
+  background-color: rgb(77, 63, 117, 0.2);
+  z-index: 1;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: rgb(77, 63, 117, 0.5);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+}
+
+.del {
+  left: 1rem;
+}
+
+.like {
+  right: 1rem;
+
+  &.like__active {
+    background-color: rgb(77, 63, 117, 0.8);
+  }
+}
+
+.description {
+  margin-bottom: 1rem;
+  margin-top: auto;
+
+  &__text {
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    min-height: 3lh;
+  }
+}
+
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: #000;
+}
+
+.drop {
+  position: relative;
+  align-self: flex-start;
+
+  &__open {
+    top: 1rem;
+    background-color: transparent;
+    z-index: 1;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+
+    &:hover {
+      .drop__icon {
+        background-color: rgb(77, 63, 117, 0.5);
+      }
+    }
+  }
+
+  &__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255, 0.2);
+    transition: 0.3s;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      transition: 0.5s;
+      color: #f3bc28;
+      flex-shrink: 0;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    background-color: #fff;
+    padding: 1rem 0.5rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    z-index: 2;
+    border-radius: 0.5rem;
+
+    @include m.mw(v.$ph) {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  &__btn {
+    flex-shrink: 0;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    background-color: transparent;
+    transition: 0.3s;
+
+    &:hover {
+      color: #f3bc28;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    color: #f3bc28;
+  }
+}
+
+.create {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+
+  &__btn {
+    background-image: linear-gradient(180deg, #f1ca2d 0%, #f6a21e 100%);
+    border-radius: 3.12rem;
+    padding: 1.5rem 2.5rem;
+    font-weight: 400;
+    font-size: 1.12rem;
+    text-align: center;
+    color: #000;
+    min-width: 10rem;
+    cursor: pointer;
+  }
+}
