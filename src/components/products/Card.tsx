@@ -10,7 +10,7 @@ import LazyLoad from "react-lazyload";
 import Like from "./Like";
 
 const Card: FC<ICard> = ({ ...props }) => {
-  const { title, images, description, price, id, like } = props;
+  const { title, thumbnail, description, price, id, like } = props;
 
   return (
     <div className={clsx(style.card)}>
@@ -19,8 +19,8 @@ const Card: FC<ICard> = ({ ...props }) => {
         <Like id={id} like={like} />
 
         <figure className={clsx(style.card__image)}>
-          <LazyLoad once>
-            <img src={images[0] || img} alt={title} />
+          <LazyLoad once scroll>
+            <img src={thumbnail || img} alt={title} />
           </LazyLoad>
         </figure>
 

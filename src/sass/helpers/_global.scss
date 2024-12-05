@@ -162,3 +162,24 @@ input:-webkit-autofill:active {
 * {
   // outline: 1px solid #ff6347;
 }
+
+.rc-pagination {
+  &-item {
+    a {
+      padding: 0.5rem;
+      border: 0.06rem solid #f3bc28;
+      background-color: #fff;
+      font-size: 1rem;
+      min-width: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-active {
+      a {
+        opacity: 0.5;
+      }
+    }
+  }
+}

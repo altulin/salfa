@@ -1,18 +1,17 @@
-import { fieldFile } from "@/UI/form_hook/utils/options/file";
 import { ITextInput } from "@/UI/form_hook/utils/types";
 import { nameMin, required } from "@/UI/form_hook/utils/validation/errText";
 
 const validations = {
   validation_type: "string",
   validations: [
-    // {
-    //   type: "required",
-    //   params: [required],
-    // },
-    // {
-    //   type: "min",
-    //   params: [2, nameMin],
-    // },
+    {
+      type: "required",
+      params: [required],
+    },
+    {
+      type: "min",
+      params: [2, nameMin],
+    },
   ],
 };
 
@@ -41,10 +40,10 @@ export const formData: ITextInput[] = [
     placeholder: "Введите стоимость",
     validation_type: "string",
     validations: [
-      // {
-      //   type: "required",
-      //   params: [required],
-      // },
+      {
+        type: "required",
+        params: [required],
+      },
     ],
   },
 ];

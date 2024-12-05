@@ -2,7 +2,7 @@ import clsx from "clsx";
 import style from "./ProductCard.module.scss";
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { paths } from "@/paths";
+import { changes, paths } from "@/paths";
 import { checkArr } from "@/service/checkArr";
 import img from "@/images/img.png";
 import LazyLoad from "react-lazyload";
@@ -12,10 +12,11 @@ import { useAppSelector } from "@/hooks/hook";
 const ProductCard: FC = () => {
   const { id } = useParams();
 
-  const { arrayCard } = useAppSelector((state) => state.card);
+  const { arrayTotalFiltered } = useAppSelector((state) => state.card);
 
   const getData = () => {
-    const item = [...arrayCard].filter((item) => item.id === Number(id)) || [];
+    const item =
+      [...arrayTotalFiltered].filter((item) => item.id === Number(id)) || [];
 
     return checkArr(item) ? item[0] : null;
   };
@@ -29,7 +30,7 @@ const ProductCard: FC = () => {
           <figure className={clsx(style.left__image)}>
             {item && (
               <LazyLoad>
-                <img src={item.images[0] || img} alt={item.title} />
+                <img src={item.thumbnail || img} alt={item.title} />
               </LazyLoad>
             )}
           </figure>
@@ -49,14 +50,24 @@ const ProductCard: FC = () => {
             </div>
           )}
 
-          <Link
-            type="button"
-            className={clsx(style.left__btn)}
-            // onClick={handleBack}
-            to={`/${paths.products}`}
-          >
-            назад
-          </Link>
+          <div className={clsx(style.control)}>
+            <Link
+              type="button"
+              className={clsx(style.left__btn)}
+              to={`/${paths.products}`}
+            >
+              назад
+            </Link>
+
+            <Link
+              type="button"
+              className={clsx(style.left__btn)}
+              to={`/${paths.create}`}
+              state={{ value: changes.edit, id }}
+            >
+              изменить
+            </Link>
+          </div>
         </div>
       </div>
     </section>

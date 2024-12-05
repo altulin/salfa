@@ -17,7 +17,7 @@
 
 .content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 
@@ -154,6 +154,12 @@
 .drop {
   position: relative;
   align-self: flex-start;
+  margin-left: auto;
+  margin-right: 2rem;
+
+  @include m.mw(v.$tb) {
+    margin-left: 0;
+  }
 
   &__open {
     top: 1rem;
@@ -203,7 +209,7 @@
     z-index: 2;
     border-radius: 0.5rem;
 
-    @include m.mw(v.$ph) {
+    @include m.mw(v.$tb) {
       right: auto;
       left: 0;
     }
@@ -244,4 +250,12 @@
     min-width: 10rem;
     cursor: pointer;
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  margin-bottom: 3rem;
 }

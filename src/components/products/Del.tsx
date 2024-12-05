@@ -3,21 +3,20 @@ import { FC } from "react";
 import IconDel from "@/images/sprite/delete.svg";
 import clsx from "clsx";
 import style from "./Products.module.scss";
-import { setDelete } from "@/store/card/cardSlice";
-// import { api } from "@/store/service/api";
-import { useAppDispatch } from "@/hooks/hook";
-// import { Draft } from "@reduxjs/toolkit";
-// import store from "@/store";
+import { setDelete, setPage } from "@/store/card/cardSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/hook";
+import { pageSize } from "@/paths";
 
 const Del: FC<{ id: number }> = ({ id }) => {
   const dispatch = useAppDispatch();
-
-  // const { arrayCard, addArrayCard } = useAppSelector((state) => state.card);
-
+  const { arrayTotalFiltered, page } = useAppSelector((state) => state.card);
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    // dispatch(setArrayCard([...arrayCard, ...addArrayCard]));
+
+    if (arrayTotalFiltered.length % pageSize === 1) {
+      dispatch(setPage(page - 1));
+    }
 
     dispatch(setDelete(id.toString()));
   };

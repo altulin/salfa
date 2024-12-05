@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import clsx from "clsx";
 import style from "./Create.module.scss";
 import { FC, useEffect } from "react";
@@ -5,24 +6,23 @@ import Title from "@/UI/title/Title";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validateSchema } from "@/UI/form_hook/utils/validation/yupSchemaCreator";
-import { makeInitialValues } from "@/UI/form_hook/utils/initialValues";
 import Field from "@/UI/form_hook/hoc/Field";
 import { formData } from "./data";
 import { Link, useNavigate } from "react-router-dom";
-import { paths } from "@/paths";
-import { useAppDispatch, useAppSelector } from "@/hooks/hook";
-import { setAddArrCard, setArrayCard } from "@/store/card/cardSlice";
+import { empty, filterPath, paths } from "@/paths";
+import { useAppDispatch } from "@/hooks/hook";
+import { setFilter, setPage } from "@/store/card/cardSlice";
 import { ICard } from "@/types";
+import { IProp } from "./types";
 
-const Create: FC = () => {
+const Create: FC<IProp> = ({ ...props }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { arrayCard, addArrayCard } = useAppSelector((state) => state.card);
 
   const { ...methods } = useForm({
     resolver: yupResolver(validateSchema(formData)),
     mode: "onChange",
-    defaultValues: makeInitialValues(formData),
+    defaultValues: props.defaultValues,
   });
 
   const {
@@ -35,33 +35,31 @@ const Create: FC = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const onSubmit = (data: ICard) => {
-    const newData = {
+  const onSubmit = (data: any) => {
+    const newData: ICard = {
       ...data,
       id: randomNumberInRange(100, 200),
-      images: [],
+      thumbnail: empty,
       like: false,
     };
-
-    dispatch(setAddArrCard(newData));
-    dispatch(
-      setArrayCard(
-        Array.from(new Set([...arrayCard, ...addArrayCard, newData])),
-      ),
-    );
+    props.fn(newData);
+    dispatch(setFilter(filterPath.all));
+    dispatch(setPage(1));
     navigate(`/${paths.products}`);
   };
 
+  useEffect(() => reset(props.defaultValues), [props.defaultValues, reset]);
+
   useEffect(() => {
     if (isSubmitSuccessful) {
-      // reset();
+      reset();
     }
   }, [isSubmitSuccessful, reset]);
 
   return (
     <section className={clsx(style.create)}>
       <div className={clsx(style.create__inner, "container")}>
-        <Title label="Создание продукта" />
+        <Title label={props.title} />
 
         <FormProvider {...methods}>
           <form
@@ -86,7 +84,7 @@ const Create: FC = () => {
               </Link>
 
               <button className={clsx(style.create__button)} type="submit">
-                Создать
+                {props.btnLabel}
               </button>
             </div>
           </form>

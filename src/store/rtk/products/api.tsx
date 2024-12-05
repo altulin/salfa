@@ -1,12 +1,11 @@
 import { api } from "@/store/service/api";
 import { IResponse } from "@/types";
-import store from "@/store";
 
 export const products = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({
       query: () => ({
-        url: "/products?limit=10",
+        url: "/products?limit=16",
       }),
 
       transformResponse: (response: IResponse) => {
@@ -14,18 +13,17 @@ export const products = api.injectEndpoints({
           ...response,
           products: [
             ...response.products.map((item) => {
-              const { id, title, images, description, price, brand } = item;
+              const { id, title, thumbnail, description, price, brand } = item;
               return {
                 id,
                 title,
-                images,
+                thumbnail,
                 description,
                 price,
                 like: false,
                 brand,
               };
             }),
-            ...store.getState().card.addArrayCard,
           ],
         };
       },

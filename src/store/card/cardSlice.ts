@@ -16,24 +16,28 @@ const cardSlice = createSlice({
     },
 
     setDelete(state, action: PayloadAction<string>) {
-      // state.likes = state.likes.filter((id) => id !== Number(action.payload));
+      state.likes = state.likes.filter((id) => id !== Number(action.payload));
       state.deletes = [...state.deletes, Number(action.payload)];
     },
 
-    setWishFilter(state, action: PayloadAction<boolean>) {
-      state.isWishFilter = action.payload;
+    setPage(state, action: PayloadAction<number>) {
+      state.page = action.payload;
     },
 
-    setArrayCard(state, action: PayloadAction<ICard[] | []>) {
-      state.arrayCard = action.payload;
+    setTotalFiltered(state, action: PayloadAction<ICard[] | []>) {
+      state.arrayTotalFiltered = action.payload;
+    },
+
+    setArrayPagination(state, action: PayloadAction<ICard[] | []>) {
+      state.arrayPagination = action.payload;
+    },
+
+    setArrayCreated(state, action: PayloadAction<ICard>) {
+      state.arrayCreated = [...state.arrayCreated, action.payload];
     },
 
     setFilter(state, action: PayloadAction<string>) {
       state.filter = action.payload;
-    },
-
-    setAddArrCard(state, action: PayloadAction<ICard>) {
-      state.addArrayCard = [...state.addArrayCard, action.payload];
     },
   },
 });
@@ -41,9 +45,10 @@ const cardSlice = createSlice({
 export const {
   setLikes,
   setDelete,
-  setWishFilter,
-  setArrayCard,
+  setTotalFiltered,
+  setArrayPagination,
+  setArrayCreated,
+  setPage,
   setFilter,
-  setAddArrCard,
 } = cardSlice.actions;
 export default cardSlice.reducer;
